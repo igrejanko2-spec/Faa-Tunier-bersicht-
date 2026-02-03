@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowing Arts - Turniertermine März</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Logo Section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo-wrapper {
+            display: inline-block;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .logo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.4);
+            transition: all 0.3s ease;
+            object-fit: cover;
+            background: transparent;
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 30px 80px rgba(220, 38, 38, 0.6);
+        }
+
+        .logo-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 3px solid rgba(220, 38, 38, 0.3);
+            animation: pulse 2s ease-out infinite;
+            pointer-events: none;
+        }
+
+        .logo-pulse:nth-child(2) { animation-delay: 0.5s; }
+        .logo-pulse:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-top: 30px;
+            background: linear-gradient(135deg, #fff 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #fff);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #a3a3a3;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+
+        /* Tournament Grid */
+        .tournament-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tournament-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .tournament-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #dc2626;
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.3);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+
+        .tournament-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .tournament-location {
+            color: #a3a3a3;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .tournament-type {
+            display: inline-block;
+            background: rgba(220, 38, 38, 0.2);
+            color: #fca5a5;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .arrow-icon {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(220, 38, 38, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .tournament-card:hover .arrow-icon {
+            background: #dc2626;
+            transform: translateX(5px);
+        }
+
+        .arrow-icon::after {
+            content: '→';
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .disabled .arrow-icon { display: none; }
+
+        .coming-soon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #888;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .tournament-grid { grid-template-columns: 1fr; }
+            .logo { width: 160px; height: 160px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo-wrapper">
+                <div class="logo-pulse"></div>
+                <div class="logo-pulse"></div>
+                <div class="logo-pulse"></div>
+                
+                <!-- Dein Imgur Logo -->
+                <img src="https://i.imgur.com/09IIiyn.png" 
+                     alt="Flowing Arts Sportacademy" 
+                     class="logo">
+            </div>
+            
+            <h1>Turniertermine März</h1>
+            <p class="subtitle">Brazilian Jiu-Jitsu & Grappling Turniere</p>
+        </div>
+
+        <div class="tournament-grid">
+            <div class="tournament-card disabled">
+                <span class="coming-soon">Link folgt</span>
+                <span class="date-badge">1. März</span>
+                <h3 class="tournament-title">BJ, FAA Inhouse Turnier</h3>
+                <p class="tournament-location">📍 Für Kinder ab 8 Jahren und Rookies</p>
+                <span class="tournament-type">👶 Kids & Rookies</span>
+            </div>
+
+            <div class="tournament-card disabled">
+                <span class="coming-soon">Link folgt</span>
+                <span class="date-badge">7. März</span>
+                <h3 class="tournament-title">White Belt Challenge</h3>
+                <p class="tournament-location">📍 Ground Fighter Salzburg</p>
+                <span class="tournament-type">🥋 White Belt Only</span>
+            </div>
+
+            <a href="https://smoothcomp.com/event/29518" target="_blank" class="tournament-card">
+                <span class="date-badge">14. März</span>
+                <h3 class="tournament-title">Fight to Submit</h3>
+                <p class="tournament-location">📍 Graz</p>
+                <span class="tournament-type">🥋 BJJ & Submission</span>
+                <div class="arrow-icon"></div>
+            </a>
+
+            <div class="tournament-card disabled">
+                <span class="coming-soon">Link folgt</span>
+                <span class="date-badge">15. März</span>
+                <h3 class="tournament-title">BJJ, Nogi, Wrestling</h3>
+                <p class="tournament-location">📍 FAA Inhouse Turnier</p>
+                <span class="tournament-type">🤼 Multi-Discipline</span>
+            </div>
+
+            <a href="https://smoothcomp.com/event/28975" target="_blank" class="tournament-card">
+                <span class="date-badge">21. März</span>
+                <h3 class="tournament-title">Momentum</h3>
+                <p class="tournament-location">📍 Wien</p>
+                <span class="tournament-type">⚡ Premium Event</span>
+                <div class="arrow-icon"></div>
+            </a>
+        </div>
+
+        <div class="footer">
+            Flowing Arts Sportacademy • SmoothComp Integration
+        </div>
+    </div>
+</body>
+</html>
